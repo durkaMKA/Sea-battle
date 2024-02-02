@@ -24,6 +24,14 @@ def BOT():
     
     nazv2 = Label(windows,text=':ваш противник',font=('Times New Roman',16))
     nazv2.grid(row=3,column=53)
+
+    tt = random.randint(0,5)
+    t = random.randint(0,10)
+
+    for k in range(t):
+        buttonsl[k].config(text=' ')
+    for kk in range(tt):
+        buttonsl[kk].config(text='  ')
     
     def Player2(l):
         
@@ -32,20 +40,15 @@ def BOT():
         game[v]='X'
         buttons[v].config(text='X',state='disabled')
         
-        tt = random.randrange(0,50)
-        t = random.randrange(0,50)
         game[l]='X'
         game[tt]='  '
         game[t]=' '
        
-        for  k in range(t):
-            buttonsl[k].config(text=' ')
-            if  game[l] != game[t]:
-                buttonsl[l].config(text='X',state= 'disabled')
-        for kk in range(tt):
-            buttonsl[kk].config(text='  ')
-            if game[l] != game[tt]:
-                buttonsl[l].config(text='-',state='disabled')
+        
+        if  game[l] != game[t]:
+            buttonsl[l].config(text='X',state= 'disabled')
+        if game[l] != game[tt]:
+            buttonsl[l].config(text='-',state='disabled')
         time.sleep(0.5)
         
 def Player1(w):

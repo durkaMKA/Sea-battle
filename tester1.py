@@ -10,11 +10,11 @@ windows.title('Морской бой')
 game1 = list(range(50))
 game2=list(range(50))
 game3 = list(range(50))
-game4 =list(range(50))
-game5 = list(range(50))
+game4 = list(range(50))
+game5 =  list(range(50))
 
 def GAME():
-    nazv1.config(text= '             ')
+    nazv1.config(text= '                    ')
     buttonsw.config(text='Повтор')
     buttons = [Button(windows,width=7,height=4,font=('Times New Roman',9, 'bold'),command= lambda  x = i:Player1(x))for i in range(50)]
     buttonsl = [Button(windows,width=7,height=4,font=('Times New Roman',9, 'bold'),command= lambda x = i: Player2(x))for i in range(50)]
@@ -41,66 +41,76 @@ def GAME():
             row +=1
             col=12
     
-   
-    nothing = random.randrange(0,26) 
-    shipsenemy = random.randrange(0,26)
-    nothing2 = random.randrange(26,49)
-    shipsenemy2 = random.randrange(26,49)
     
-    nazv3 = Label(windows,text='                       ')
+    
+    
+    nazv3 = Label(windows,text='                          ')
     nazv3.grid(row=1,column=11)
     nazv2 = Label(windows,text=':ваш противник',font=('Times New Roman',16))
     nazv2.grid(row=3,column=53)
+    #Список с длинами кораблей
+    ship_lengths = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1]
+    for length in ship_lengths:
+    # Генерация случайных координат для размещения корабля
+        direction = random.choice(['horizontal', 'vertical'])
+        while True:
+            x = random.randint(
+                0, 50) if direction == 'horizontal' else random.randint(0, 50 - length)
+            y = random.randint(
+                0, 50 - length) if direction == 'vertical' else random.randint(0, 50)
+            break
 
-    
-    #вторая половина поля
-    
-    for item2 in range(game2[shipsenemy2]):
-        buttonsl[item2].config(text='X')
-        
+#Размещение корабля на поле
+        for i in range(length):
+            if direction == 'horizontal':
+                buttonsl[x + i].config(text = 'X')
+            else:
+                buttonsl[y + i].config(text = 'X')
+# Генерация случайных координат для размещения пустоты
+        directionpust = random.choice(['horizontal', 'vertical'])
+        while True:
+            x2 = random.randint(
+                0, 50) if directionpust == 'horizontal' else random.randint(0, 50 - length)
+            y2 = random.randint(
+                0, 50 - length) if directionpust == 'vertical' else random.randint(0, 50)
+            break
 
-    for item3 in range(game5[nothing2]):
-        buttonsl[item3].config(text=' ')
-
-    #первая половина поля
-    for item in range(game3[shipsenemy]):
-        buttonsl[item].config(text='X')
-       
-            
-    for item1 in range(game4[nothing]):
-        buttonsl[item1].config(text=' ')
-    
-        
+#Размещение пустоы на поле
+        for i in range(length):
+            if directionpust == 'horizontal':
+                buttonsl[x2 + i].config(text = ' ')
+            else:
+                buttonsl[y2 + i].config(text = ' ')
     def Player1(w):
         
         game1[w]= '■'
         buttons[w].config(text='■',state='disabled')
-    
+
     def Player2(l):
         
         enemy = random.randint(0,50)
         game1[enemy]='X'
         buttons[enemy].config(text='X',state='disabled')
         
-        game1[l]='X'
-        game3[shipsenemy]=' '
-        game2[shipsenemy2]= '  '
-        game5[nothing2]= '    '
-        game4[nothing]= '   '
+        #game1[l]='X'
+        #game2[x] = ' '
+        #game3[y] = ' '
+        #game4[x2] = '  '
+        #game5[y2] = '  '
         
-        if  game1[l] != game2[shipsenemy2]:
-            buttonsl[l].config(text='X',state= 'disabled')
-            nazv3['text'] = 'Вы попали!'
-        if  game1[l] != game5[nothing2]:
-            buttonsl[l].config(text='O',state='disabled')
-            nazv3['text']= 'Вы промазали'
+        #if  game1[l] != game4[x2]:
+            #buttonsl[l].config(text='X',state= 'disabled')
+            #nazv3['text'] = 'Вы попали!'
+        #if  game1[l] != game5[y2]:
+           #buttonsl[l].config(text='O',state='disabled')
+            #nazv3['text']= 'Вы промазали'
         
-        if  game1[l] != game3[shipsenemy]:
-            buttonsl[l].config(text='X',state= 'disabled')
-            nazv3['text'] = 'Вы попали!'
-        if  game1[l] != game4[nothing]:
-            buttonsl[l].config(text='O',state='disabled')
-            nazv3['text']= 'Вы промазали'
+        #if  game1[l] != game2[x]:
+            #buttonsl[l].config(text='X',state= 'disabled')
+            #nazv3['text'] = 'Вы попали!'
+        #if  game1[l] != game3[y]:
+            #buttonsl[l].config(text='O',state='disabled')
+            #nazv3['text']= 'Вы промазали'
         
         
         #time.sleep(0.5)
@@ -118,3 +128,5 @@ buttonsw.place(relx=0.4,rely=0.6)
 windows.mainloop()
 #nazv1['text'] = 'Вы проиграли((('
 #nazv1['text'] = 'Вы победили!'
+
+

@@ -90,30 +90,14 @@ class GAME:
                     for i in range(len(self.player2)):
                        pole_player2[l] = 'X'
                        self.player2[i][l].config(text='X',state= 'disabled') 
-                
-        #game2[x] = 'X'
-        #game3[y] = 'X'
-        
-        #if  game1[l] != game2[x]:
-            #buttonsl[l].config(text='X',state= 'disabled')
-            #nazv3['text'] = 'Вы попали!'
-        #else:
-            #buttonsl[l].config(text='O',state= 'disabled')
-            #nazv3['text'] = 'Вы промазали!'
-        #if  game1[l] != game3[y]:
-            #buttonsl[l].config(text='X',state='disabled')
-            #nazv3['text']= 'Вы попали!'
-        #else:
-            #buttonsl[l].config(text='O',state= 'disabled')
-            #nazv3['text'] = 'Вы промазали!'
+      
         
         #time.sleep(0.5)
 
-play = GAME(player1=[Button(windows,width=7,height=4,font=('Times New Roman',9, 'bold'),command= lambda  x = i:play.Player1(x))for i in range(10*10)], player2=[[Button(windows,width=7,height=4,font=('Times New Roman',9, 'bold'),command = lambda x = i:play.Player2(x))for i in range(10*10)]])
+play = GAME(player1=[Button(windows,width=7,height=4,font=('Times New Roman',9, 'bold'),command= lambda  x = i:play.Player1(x))for i in range(10*10)], player2=[[Button(windows,width=7,height=4,font=('Times New Roman',9, 'bold'),command = lambda x = i:play.Player2(x))]for i in range(10*10)])
 play.GAME1()
 #buttonsw = Button(windows,text='Начать игру',width=20,height=5,command=play.GAME1())
 #buttonsw.place(relx=0.4,rely=0.6)
 
 windows.mainloop()
-#nazv1['text'] = 'Вы проиграли((('
-#nazv1['text'] = 'Вы победили!'
+
